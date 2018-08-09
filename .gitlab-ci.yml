@@ -8,6 +8,7 @@ build:
   stage: build
   image: golang:stretch
   script:
+    - apt update && apt install -y rsync
     - /bin/sh build.sh
   artifacts:
     paths:
