@@ -1,0 +1,11 @@
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - ./build.sh
+  artifacts:
+    paths:
+      - artifacts/*
+    exipre_in: 8 weeks
