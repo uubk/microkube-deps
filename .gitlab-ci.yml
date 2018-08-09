@@ -6,8 +6,9 @@ stages:
 
 build:
   stage: build
+  image: golang:stretch
   script:
-    - /bin/bash build.sh
+    - /bin/sh build.sh
   artifacts:
     paths:
       - artifacts/*
