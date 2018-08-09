@@ -8,4 +8,4 @@ build:
   artifacts:
     paths:
       - artifacts/*
-    exipre_in: 8 weeks
+    expire_in: 8 weeks
