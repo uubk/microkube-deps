@@ -4,3 +4,6 @@
 [submodule "kubernetes"]
 	path = kubernetes
 	url = https://github.com/kubernetes/kubernetes.git
+[submodule "cni-plugins"]
+	path = cni-plugins
+	url = https://github.com/containernetworking/plugins.git
