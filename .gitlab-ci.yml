@@ -4,13 +4,16 @@ variables:
 stages:
   - build
 
+before_script:
+  - docker login -u sys_docker -p $CI_PUSH_PWD registry.vseth.ethz.ch
+
 build:
   stage: build
-  image: golang:stretch
   script:
-    - apt update && apt install -y rsync
-    - /bin/sh build.sh
-  artifacts:
-    paths:
-      - artifacts/*
-    expire_in: 8 weeks
+    - git checkout -B "$CI_BUILD_REF_NAME" "$CI_BUILD_REF"
+    - docker build -t microkube-deps-build .
+    - docker tag microkube-deps-build registry.vseth.ethz.ch/it/microkube-deps:${CI_COMMIT_REF_SLUG}
+    - docker tag microkube-deps-build registry.vseth.ethz.ch/it/microkube-deps:${CI_COMMIT_SHA}
+    - docker push registry.vseth.ethz.ch/it/microkube-deps:${CI_COMMIT_REF_SLUG}
+    - docker push registry.vseth.ethz.ch/it/microkube-deps:${CI_COMMIT_SHA}
+
