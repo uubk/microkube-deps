@@ -6,7 +6,7 @@ COPY kubernetes /build/kubernetes
 COPY build.sh /build
 # ETCD build relies on this...
 COPY .git /build/.git
-RUN cd /build && ./build.sh && tar -cvf /payload.tar artifacts
+RUN cd /build && ./build.sh && chmod -R uga+rwx artifacts && tar -cvf /payload.tar artifacts
 
 FROM busybox
 COPY --from=0 /payload.tar /
